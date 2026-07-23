@@ -14,16 +14,17 @@ from manim import *
 import numpy as np
 
 from narration import AUDIO_DIR
+import video_settings as vs
 
 
-# ─── Palette ──────────────────────────────────────────────────────────────────
-BLUE_3B1B = "#58C4DD"
-YELLOW_3B1B = "#FFFF00"
+# ─── Palette (project defaults + qubit accents) ───────────────────────────────
+BLUE_3B1B = vs.BLUE
+YELLOW_3B1B = vs.YELLOW
 BROWN_3B1B = "#CD853F"
-TEAL = "#5CD0B3"
+TEAL = vs.TEAL
 PINK_Q = "#FF6B9D"
-PURPLE_Q = "#C77DFF"
-BG = "#0C0F1A"
+PURPLE_Q = vs.PURPLE
+BG = vs.BG
 
 PAD_AFTER_VOICE = 0.45  # brief breath after each line
 
