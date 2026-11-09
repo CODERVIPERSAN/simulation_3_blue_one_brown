@@ -1,0 +1,14 @@
+agent:
+  id: rca_generation
+  parent: closure_learning
+  display_name: "RCA Generation Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.2
+  max_tokens: 2500
+runtime:
+  max_turns: 8
+tools: [compose_rca, attach_timeline]
+connectors: [cognitive_bridge, servicenow]

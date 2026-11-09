@@ -1,0 +1,24 @@
+agent:
+  id: governance
+  display_name: Governance Agent
+  version: "1.0.0"
+  kind: shared
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0
+  max_tokens: 2000
+runtime:
+  max_turns: 8
+  kill_switch_enabled: true
+connectors:
+  - servicenow
+  - cognitive_bridge
+  - pagerduty
+tools:
+  - validate_policy
+  - score_confidence
+  - write_audit_log
+  - enforce_approval
+  - assess_risk
+  - trigger_kill_switch

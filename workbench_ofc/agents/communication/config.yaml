@@ -1,0 +1,23 @@
+agent:
+  id: communication
+  display_name: Incident Communication Agent
+  version: "1.0.0"
+  kind: shared
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.3
+  max_tokens: 2500
+runtime:
+  max_turns: 8
+  require_verified_before_recovery_message: true
+connectors:
+  - teams
+  - email
+  - servicenow
+tools:
+  - post_teams_update
+  - send_email
+  - broadcast_status
+  - draft_executive_summary
+  - draft_customer_update

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/shared/agent_invoke.schema.json",
+  "title": "AgentInvoke",
+  "description": "Orchestrator → agent invocation brief",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "run_id", "incident_id", "agent_id", "stage", "brief"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "run_id": { "type": "string", "format": "uuid" },
+    "incident_id": {
+      "type": "string",
+      "description": "ServiceNow incident number, e.g. INC0012345"
+    },
+    "agent_id": {
+      "type": "string",
+      "enum": [
+        "triage",
+        "diagnostic",
+        "resolution",
+        "verification",
+        "closure_learning",
+        "knowledge",
+        "governance",
+        "communication"
+      ]
+    },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "intake_and_triage",
+        "diagnose_and_assess",
+        "resolve",
+        "verify",
+        "close_and_follow_up",
+        "shared"
+      ]
+    },
+    "caller": {
+      "type": "object",
+      "required": ["user_id", "impersonate"],
+      "properties": {
+        "user_id": { "type": "string" },
+        "impersonate": { "type": "boolean", "default": true }
+      }
+    },
+    "brief": {
+      "type": "object",
+      "required": ["goal", "payload"],
+      "properties": {
+        "goal": { "type": "string" },
+        "constraints": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": []
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ids of prior evidence entries to load"
+        },
+        "payload": {
+          "type": "object",
+          "description": "Agent-specific input; validate with that agent's input.schema.json"
+        }
+      }
+    },
+    "timeout_seconds": { "type": "integer", "minimum": 1, "default": 120 }
+  }
+}

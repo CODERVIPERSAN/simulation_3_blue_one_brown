@@ -1,0 +1,24 @@
+agent:
+  id: priority_assessment
+  parent: triage
+  display_name: Priority Assessment Agent
+  version: "1.0.0"
+
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0
+  max_tokens: 1200
+
+runtime:
+  max_turns: 5
+  priority_scale: [P1, P2, P3, P4, P5]
+
+tools:
+  - score_priority
+  - get_service_criticality
+  - get_sla_policy
+
+connectors:
+  - servicenow
+  - cognitive_bridge

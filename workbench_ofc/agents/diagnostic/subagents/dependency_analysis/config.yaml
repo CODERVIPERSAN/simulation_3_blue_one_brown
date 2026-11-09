@@ -1,0 +1,14 @@
+agent:
+  id: dependency_analysis
+  parent: diagnostic
+  display_name: "Dependency Analysis Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.1
+  max_tokens: 2000
+runtime:
+  max_turns: 8
+tools: [get_service_map, list_failing_dependencies]
+connectors: [dynatrace, cognitive_bridge]

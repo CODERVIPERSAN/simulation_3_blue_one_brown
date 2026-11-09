@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "11111111-2222-3333-4444-555555555555",
+  "incident_id": "INC0012345",
+  "agent_id": "diagnostic",
+  "status": "success",
+  "confidence": 0.74,
+  "hitl_required": false,
+  "hitl_gate": null,
+  "payload": {
+    "incident_id": "INC0012345",
+    "hypotheses": [
+      {
+        "rank": 1,
+        "claim": "Recent checkout-api deploy introduced slow DB query on /pay",
+        "confidence": 0.74,
+        "evidence_ids": ["ev-log-01", "ev-chg-02", "ev-code-03"],
+        "subagents_used": ["log_analysis", "change_analysis", "code_analysis"]
+      }
+    ],
+    "findings_summary": "Error cluster matches deploy window; suspect commit abc123",
+    "confidence": 0.74,
+    "needs_more_evidence": false,
+    "gaps": []
+  },
+  "evidence_delta": [],
+  "errors": [],
+  "notes": []
+}

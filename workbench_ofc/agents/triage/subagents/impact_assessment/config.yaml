@@ -1,0 +1,26 @@
+agent:
+  id: impact_assessment
+  parent: triage
+  display_name: Impact Assessment Agent
+  version: "1.0.0"
+
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.1
+  max_tokens: 1500
+
+runtime:
+  max_turns: 6
+  max_downstream_depth: 3
+
+tools:
+  - get_service_map
+  - get_affected_users_signal
+  - list_downstream_services
+
+connectors:
+  - dynatrace
+  - azure_monitor
+  - splunk
+  - cognitive_bridge

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/verification/output.schema.json",
+  "title": "VerificationOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "stable", "checks", "confidence"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "stable": { "type": "boolean" },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "category", "passed"],
+        "properties": {
+          "name": { "type": "string" },
+          "category": {
+            "type": "string",
+            "enum": ["health", "business", "risk"]
+          },
+          "passed": { "type": "boolean" },
+          "critical": { "type": "boolean", "default": true },
+          "detail": { "type": ["string", "null"] },
+          "metrics": { "type": "object", "additionalProperties": true }
+        }
+      }
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "open_recovery_failure_loop": { "type": "boolean", "default": false }
+  }
+}

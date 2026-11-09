@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/verification/input.schema.json",
+  "title": "VerificationInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "service_or_ci"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "service_or_ci": { "type": "string" },
+    "baseline_ref": {
+      "type": ["string", "null"],
+      "description": "Pre-incident metrics snapshot id if available"
+    },
+    "critical_flows": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "fix_execution_id": { "type": ["string", "null"] }
+  }
+}

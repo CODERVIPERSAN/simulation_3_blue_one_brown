@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/knowledge/input.schema.json",
+  "title": "KnowledgeInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "operation"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "operation": {
+      "type": "string",
+      "enum": ["query", "search_rca", "search_sop", "search_automation", "search_architecture", "write"]
+    },
+    "query": { "type": ["string", "null"] },
+    "write_fact": {
+      "type": ["object", "null"],
+      "properties": {
+        "text": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "tags": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

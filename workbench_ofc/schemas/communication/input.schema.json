@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/communication/input.schema.json",
+  "title": "CommunicationInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "audience", "intent"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "audience": {
+      "type": "string",
+      "enum": ["bridge", "executive", "customer", "assignment_group"]
+    },
+    "intent": {
+      "type": "string",
+      "enum": [
+        "status_update",
+        "escalation_notice",
+        "recovery_notice",
+        "executive_summary",
+        "customer_update"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": ["teams", "email", "draft_only"],
+      "default": "draft_only"
+    },
+    "facts": {
+      "type": "object",
+      "description": "Only verified facts; never invent ETA/root cause",
+      "properties": {
+        "stage": { "type": "string" },
+        "priority": { "type": ["string", "null"] },
+        "summary": { "type": "string" },
+        "stable": { "type": ["boolean", "null"] },
+        "evidence_refs": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["summary"]
+    },
+    "auto_send": { "type": "boolean", "default": false }
+  }
+}

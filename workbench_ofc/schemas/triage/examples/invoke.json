@@ -1,0 +1,20 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "incident_id": "INC0012345",
+  "agent_id": "triage",
+  "stage": "intake_and_triage",
+  "caller": { "user_id": "sre.ops", "impersonate": true },
+  "brief": {
+    "goal": "Triage incident and propose priority + owner",
+    "constraints": ["propose_only writes"],
+    "evidence_refs": [],
+    "payload": {
+      "incident_id": "INC0012345",
+      "alert_id": "Alert0012345",
+      "source": "pagerduty",
+      "force_retriage": false
+    }
+  },
+  "timeout_seconds": 120
+}

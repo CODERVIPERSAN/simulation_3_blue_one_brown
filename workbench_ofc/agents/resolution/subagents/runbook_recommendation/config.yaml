@@ -1,0 +1,14 @@
+agent:
+  id: runbook_recommendation
+  parent: resolution
+  display_name: "Runbook Recommendation Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.1
+  max_tokens: 1800
+runtime:
+  max_turns: 8
+tools: [search_sop, rank_runbooks]
+connectors: [cognitive_bridge, servicenow]

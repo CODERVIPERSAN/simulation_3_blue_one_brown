@@ -1,0 +1,10 @@
+{
+  "schema_version": "1.0.0",
+  "approval_request_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "decision": "approve",
+  "approval_token": "hitl_tok_9f3a2c1b",
+  "modifications": {},
+  "decided_by": "incident.manager",
+  "decided_at": "2026-11-09T10:20:00Z",
+  "comment": "Agreed P2"
+}

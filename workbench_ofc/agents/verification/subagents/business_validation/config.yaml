@@ -1,0 +1,14 @@
+agent:
+  id: business_validation
+  parent: verification
+  display_name: "Business Validation Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0
+  max_tokens: 1500
+runtime:
+  max_turns: 6
+tools: [run_synthetic_check, check_key_transactions]
+connectors: [dynatrace, cognitive_bridge]

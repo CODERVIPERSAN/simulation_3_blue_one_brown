@@ -1,0 +1,48 @@
+agent:
+  id: triage
+  display_name: Triage Agent
+  version: "1.0.0"
+  kind: lifecycle
+  stage: intake_and_triage
+
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.1
+  max_tokens: 3000
+
+runtime:
+  max_turns: 12
+  confidence_threshold: 0.75
+  parallel_subagents:
+    - priority_assessment
+    - impact_assessment
+  require_data_quality_pass: true
+
+hitl:
+  gate: priority_escalation
+  force_when_priority_in: [P1, P2]
+  force_when_confidence_below: 0.75
+
+subagents:
+  - data_quality
+  - priority_assessment
+  - impact_assessment
+
+connectors:
+  - servicenow
+  - pagerduty
+  - cognitive_bridge
+  - dynatrace
+  - azure_monitor
+
+tools:
+  - run_data_quality
+  - run_priority_assessment
+  - run_impact_assessment
+  - propose_owner
+  - submit_triage_result
+
+safety:
+  audit_all_actions: true
+  write_mode: propose_only   # Orchestrator + HITL apply writes

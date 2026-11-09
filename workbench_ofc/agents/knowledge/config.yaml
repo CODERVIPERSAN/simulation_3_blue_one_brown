@@ -1,0 +1,23 @@
+agent:
+  id: knowledge
+  display_name: Knowledge Agent
+  version: "1.0.0"
+  kind: shared
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.1
+  max_tokens: 3000
+runtime:
+  max_turns: 10
+  write_requires_governance: true
+connectors:
+  - cognitive_bridge
+  - servicenow
+tools:
+  - query_bridge
+  - write_bridge
+  - search_rca_repo
+  - search_automation_catalog
+  - search_sop_library
+  - search_architecture

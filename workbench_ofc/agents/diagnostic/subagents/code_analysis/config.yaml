@@ -1,0 +1,14 @@
+agent:
+  id: code_analysis
+  parent: diagnostic
+  display_name: "Code Analysis Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.1
+  max_tokens: 2000
+runtime:
+  max_turns: 8
+tools: [list_recent_commits, diff_suspect_files]
+connectors: [github, azure_devops]

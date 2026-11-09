@@ -1,0 +1,57 @@
+agent:
+  id: master_orchestrator
+  display_name: Master Orchestrator Agent (Incident Commander AI)
+  version: "1.0.0"
+  kind: orchestrator
+
+model:
+  provider: azure_openai   # or now_llm / anthropic / gemini
+  name: gpt-4.1
+  temperature: 0.1
+  max_tokens: 4000
+
+runtime:
+  max_turns_per_incident: 40
+  max_investigation_loops: 3
+  max_recovery_failure_loops: 2
+  confidence_threshold: 0.7
+  allow_stage_skip: false
+
+hitl_gates:
+  - priority_escalation
+  - recovery_approach
+  - automation_execution
+  - recovery_confirmation
+  - closure
+
+callable_agents:
+  - triage
+  - diagnostic
+  - resolution
+  - verification
+  - closure_learning
+  - knowledge
+  - governance
+  - communication
+
+connectors:
+  - servicenow
+  - pagerduty
+  - cognitive_bridge
+  - teams
+  - email
+
+tools:
+  - invoke_agent
+  - collect_evidence
+  - open_investigation_loop
+  - open_recovery_failure_loop
+  - request_hitl_approval
+  - manual_takeover
+  - update_progress
+  - emergency_kill_switch
+
+safety:
+  audit_all_actions: true
+  kill_switch_enabled: true
+  impersonate_caller: true

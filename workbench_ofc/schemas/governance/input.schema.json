@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/governance/input.schema.json",
+  "title": "GovernanceInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "action"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "action": {
+      "type": "string",
+      "enum": [
+        "validate_policy",
+        "score_confidence",
+        "enforce_approval",
+        "assess_risk",
+        "write_audit",
+        "kill_switch"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "description": "Packet or plan under review",
+      "additionalProperties": true
+    },
+    "gate": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "priority_escalation",
+        "recovery_approach",
+        "automation_execution",
+        "recovery_confirmation",
+        "closure"
+      ]
+    },
+    "approval_token": { "type": ["string", "null"] },
+    "reason": { "type": ["string", "null"] }
+  }
+}

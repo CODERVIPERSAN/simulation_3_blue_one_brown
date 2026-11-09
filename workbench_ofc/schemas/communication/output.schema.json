@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/communication/output.schema.json",
+  "title": "CommunicationOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "draft", "sent"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "draft": {
+      "type": "object",
+      "required": ["subject", "body_markdown"],
+      "properties": {
+        "subject": { "type": "string" },
+        "body_markdown": { "type": "string" },
+        "audience": { "type": "string" }
+      }
+    },
+    "sent": { "type": "boolean" },
+    "message_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "blocked_reason": {
+      "type": ["string", "null"],
+      "description": "e.g. recovery_notice before Verify"
+    }
+  }
+}

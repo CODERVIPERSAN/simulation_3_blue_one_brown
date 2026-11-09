@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0.0",
+  "approval_request_id": "7c9e6679-7425-40de-944b-e07fc1f90ae7",
+  "incident_id": "INC0012345",
+  "gate": "priority_escalation",
+  "channel": "teams",
+  "summary": "Approve P2 for INC0012345 checkout-api latency",
+  "packet": {
+    "proposed_priority": "P2",
+    "assignment_group": "Checkout SRE",
+    "confidence": 0.82
+  },
+  "expires_at": "2026-11-09T11:00:00Z",
+  "requested_at": "2026-11-09T10:16:00Z"
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/shared/agent_result.schema.json",
+  "title": "AgentResult",
+  "description": "Agent → Orchestrator result wrapper",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_id",
+    "incident_id",
+    "agent_id",
+    "status",
+    "confidence",
+    "hitl_required",
+    "payload"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "run_id": { "type": "string", "format": "uuid" },
+    "incident_id": { "type": "string" },
+    "agent_id": { "type": "string" },
+    "status": {
+      "type": "string",
+      "enum": ["success", "failed", "needs_input", "blocked_by_policy"]
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "hitl_required": { "type": "boolean" },
+    "hitl_gate": {
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "priority_escalation",
+        "recovery_approach",
+        "automation_execution",
+        "recovery_confirmation",
+        "closure"
+      ]
+    },
+    "payload": {
+      "type": "object",
+      "description": "Agent-specific output; validate with that agent's output.schema.json"
+    },
+    "evidence_delta": {
+      "type": "array",
+      "items": { "$ref": "apso://schemas/shared/evidence_pack.schema.json#/$defs/EvidenceEntry" }
+    },
+    "errors": {
+      "type": "array",
+      "items": { "$ref": "apso://schemas/shared/error.schema.json" },
+      "default": []
+    },
+    "notes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    }
+  }
+}

@@ -1,0 +1,37 @@
+agent:
+  id: data_quality
+  parent: triage
+  display_name: Data Quality Agent
+  version: "1.0.0"
+
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0
+  max_tokens: 1500
+
+runtime:
+  max_turns: 6
+  enrich_ci: true
+  enrich_requires_unique_match: true
+
+required_fields:
+  - number
+  - short_description
+  - opened_at
+  - caller_id
+
+soft_required_fields:
+  - cmdb_ci
+  - business_service
+  - category
+
+tools:
+  - get_incident
+  - validate_required_fields
+  - enrich_ci_context
+  - update_incident_quality_notes
+
+connectors:
+  - servicenow
+  - cognitive_bridge

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/resolution/output.schema.json",
+  "title": "ResolutionOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "mode", "hitl_required"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "mode": {
+      "type": "string",
+      "enum": ["plan_only", "awaiting_approval", "executed", "failed"]
+    },
+    "recommended_runbooks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "score"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "score": { "type": "number" }
+        }
+      }
+    },
+    "fix_plan": {
+      "type": "object",
+      "properties": {
+        "steps": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["order", "action"],
+            "properties": {
+              "order": { "type": "integer" },
+              "action": { "type": "string" },
+              "automation_job_id": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "blast_radius": { "type": "string" },
+        "risk_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"]
+        }
+      }
+    },
+    "execution": {
+      "type": ["object", "null"],
+      "properties": {
+        "job_id": { "type": "string" },
+        "execution_id": { "type": "string" },
+        "status": {
+          "type": "string",
+          "enum": ["queued", "running", "succeeded", "failed"]
+        }
+      }
+    },
+    "hitl_required": { "type": "boolean" },
+    "hitl_gate": {
+      "type": ["string", "null"],
+      "enum": [null, "recovery_approach", "automation_execution"]
+    },
+    "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+  }
+}

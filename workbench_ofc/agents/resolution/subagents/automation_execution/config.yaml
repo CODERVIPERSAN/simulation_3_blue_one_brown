@@ -1,0 +1,14 @@
+agent:
+  id: automation_execution
+  parent: resolution
+  display_name: "Automation Execution Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.1
+  max_tokens: 1800
+runtime:
+  max_turns: 8
+tools: [list_automation_jobs, run_approved_job, poll_job_status]
+connectors: [rundeck, ansible, azure_automation]

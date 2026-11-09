@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/resolution/input.schema.json",
+  "title": "ResolutionInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "primary_hypothesis"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "service_or_ci": { "type": ["string", "null"] },
+    "primary_hypothesis": {
+      "type": "object",
+      "required": ["claim", "evidence_ids"],
+      "properties": {
+        "claim": { "type": "string" },
+        "evidence_ids": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "allow_automation": { "type": "boolean", "default": true },
+    "approval_token": {
+      "type": ["string", "null"],
+      "description": "Required only when executing; null while planning"
+    }
+  }
+}

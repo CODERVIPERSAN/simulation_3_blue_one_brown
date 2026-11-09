@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/shared/evidence_pack.schema.json",
+  "title": "EvidencePack",
+  "description": "Accumulated evidence for one incident",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "incident_id", "version", "entries"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "incident_id": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "updated_at": { "type": "string", "format": "date-time" },
+    "entries": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/EvidenceEntry" }
+    }
+  },
+  "$defs": {
+    "EvidenceEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "source_agent", "kind", "summary", "created_at"],
+      "properties": {
+        "id": { "type": "string" },
+        "source_agent": { "type": "string" },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "triage",
+            "diagnosis",
+            "resolution_plan",
+            "automation_result",
+            "verification",
+            "rca",
+            "communication",
+            "governance",
+            "knowledge",
+            "other"
+          ]
+        },
+        "summary": { "type": "string" },
+        "data": { "type": "object", "additionalProperties": true },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["system", "ref"],
+            "properties": {
+              "system": { "type": "string" },
+              "ref": { "type": "string" },
+              "url": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+agent:
+  id: closure_learning
+  display_name: Closure & Learning Agent
+  version: "1.0.0"
+  kind: lifecycle
+  stage: close_and_follow_up
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.2
+  max_tokens: 4000
+runtime:
+  max_turns: 14
+  require_closure_hitl: true
+subagents:
+  - rca_generation
+  - problem_creation
+  - knowledge_update
+connectors:
+  - servicenow
+  - cognitive_bridge
+tools:
+  - draft_rca
+  - create_or_link_problem
+  - update_knowledge
+  - close_incident

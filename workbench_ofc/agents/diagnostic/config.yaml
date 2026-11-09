@@ -1,0 +1,39 @@
+agent:
+  id: diagnostic
+  display_name: Diagnostic Agent
+  version: "1.0.0"
+  kind: lifecycle
+  stage: diagnose_and_assess
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.15
+  max_tokens: 4000
+runtime:
+  max_turns: 20
+  confidence_threshold: 0.7
+  max_parallel_subagents: 3
+subagents:
+  - log_analysis
+  - change_analysis
+  - infrastructure_analysis
+  - dependency_analysis
+  - application_analysis
+  - code_analysis
+connectors:
+  - splunk
+  - dynatrace
+  - azure_monitor
+  - servicenow
+  - github
+  - azure_devops
+  - cognitive_bridge
+tools:
+  - run_log_analysis
+  - run_change_analysis
+  - run_infra_analysis
+  - run_dependency_analysis
+  - run_app_analysis
+  - run_code_analysis
+  - propose_root_cause
+  - request_more_evidence

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/orchestrator/progress_update.schema.json",
+  "title": "OrchestratorProgressUpdate",
+  "description": "Written to ServiceNow + Cognitive Bridge on stage change",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "stage", "summary", "updated_at"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "stage": {
+      "type": "string",
+      "enum": [
+        "intake_and_triage",
+        "diagnose_and_assess",
+        "resolve",
+        "verify",
+        "close_and_follow_up",
+        "manual",
+        "halted"
+      ]
+    },
+    "summary": { "type": "string" },
+    "next_action": { "type": ["string", "null"] },
+    "hitl_pending": { "type": "boolean", "default": false },
+    "evidence_version": { "type": ["integer", "null"] },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

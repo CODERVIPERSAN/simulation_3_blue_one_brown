@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/knowledge/output.schema.json",
+  "title": "KnowledgeOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "operation", "hits"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "operation": { "type": "string" },
+    "hits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "summary"],
+        "properties": {
+          "id": { "type": "string" },
+          "summary": { "type": "string" },
+          "score": { "type": ["number", "null"] },
+          "citation": { "type": ["string", "null"] }
+        }
+      }
+    },
+    "written_fact_id": { "type": ["string", "null"] },
+    "blocked_by_governance": { "type": "boolean", "default": false }
+  }
+}

@@ -1,0 +1,14 @@
+agent:
+  id: problem_creation
+  parent: closure_learning
+  display_name: "Problem Creation Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0.2
+  max_tokens: 2500
+runtime:
+  max_turns: 8
+tools: [create_problem, link_known_error]
+connectors: [servicenow]

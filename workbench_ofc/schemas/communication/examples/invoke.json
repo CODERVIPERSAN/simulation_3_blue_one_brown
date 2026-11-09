@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  "incident_id": "INC0012345",
+  "agent_id": "communication",
+  "stage": "shared",
+  "caller": { "user_id": "orchestrator", "impersonate": true },
+  "brief": {
+    "goal": "Post bridge status after triage",
+    "constraints": ["do not claim recovery"],
+    "evidence_refs": ["ev-triage-001"],
+    "payload": {
+      "incident_id": "INC0012345",
+      "audience": "bridge",
+      "intent": "status_update",
+      "channel": "teams",
+      "facts": {
+        "stage": "intake_and_triage",
+        "priority": "P2",
+        "summary": "Triage complete; awaiting priority HITL; Checkout SRE proposed owner",
+        "stable": null,
+        "evidence_refs": ["ev-triage-001"]
+      },
+      "auto_send": true
+    }
+  },
+  "timeout_seconds": 60
+}

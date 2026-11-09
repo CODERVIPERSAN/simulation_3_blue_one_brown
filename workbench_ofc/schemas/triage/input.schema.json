@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/triage/input.schema.json",
+  "title": "TriageInput",
+  "description": "brief.payload when Orchestrator invokes Triage",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "alert_id": { "type": ["string", "null"] },
+    "source": {
+      "type": "string",
+      "enum": ["servicenow", "pagerduty", "manual"],
+      "default": "servicenow"
+    },
+    "force_retriage": { "type": "boolean", "default": false }
+  }
+}

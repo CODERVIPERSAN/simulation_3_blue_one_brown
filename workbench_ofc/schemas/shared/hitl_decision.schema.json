@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/shared/hitl_decision.schema.json",
+  "title": "HITLDecision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "approval_request_id",
+    "decision",
+    "decided_by",
+    "decided_at"
+  ],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0.0" },
+    "approval_request_id": { "type": "string", "format": "uuid" },
+    "decision": { "type": "string", "enum": ["approve", "reject", "modify"] },
+    "approval_token": {
+      "type": ["string", "null"],
+      "description": "Present only when decision=approve; required by execute/close tools"
+    },
+    "modifications": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "When decision=modify, fields the human changed"
+    },
+    "decided_by": { "type": "string" },
+    "decided_at": { "type": "string", "format": "date-time" },
+    "comment": { "type": ["string", "null"] }
+  }
+}

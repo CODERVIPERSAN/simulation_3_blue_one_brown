@@ -1,0 +1,39 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "incident_id": "INC0012345",
+  "agent_id": "triage",
+  "status": "success",
+  "confidence": 0.82,
+  "hitl_required": true,
+  "hitl_gate": "priority_escalation",
+  "payload": {
+    "incident_id": "INC0012345",
+    "data_quality": "pass",
+    "missing_fields": [],
+    "priority": "P2",
+    "priority_rationale": "Critical checkout service; p95 latency + executive impact signal",
+    "impact_summary": "checkout-api degraded; 2 downstream services yellow",
+    "downstream_services": ["payments-api", "order-ui"],
+    "assignment_group": "Checkout SRE",
+    "assigned_to": "oncall.checkout",
+    "ci_id": "ci-checkout-api",
+    "business_service": "Checkout",
+    "confidence": 0.82,
+    "hitl_required": true,
+    "notes": ["Priority forced HITL because P2"]
+  },
+  "evidence_delta": [
+    {
+      "id": "ev-triage-001",
+      "source_agent": "triage",
+      "kind": "triage",
+      "summary": "P2 proposed; Checkout SRE owner",
+      "data": { "priority": "P2" },
+      "citations": [{ "system": "servicenow", "ref": "INC0012345" }],
+      "created_at": "2026-11-09T10:15:00Z"
+    }
+  ],
+  "errors": [],
+  "notes": []
+}

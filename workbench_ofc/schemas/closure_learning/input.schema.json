@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/closure_learning/input.schema.json",
+  "title": "ClosureLearningInput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "verified_stable"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "verified_stable": { "type": "boolean" },
+    "human_override": { "type": "boolean", "default": false },
+    "create_problem": { "type": "boolean", "default": true },
+    "approval_token": {
+      "type": ["string", "null"],
+      "description": "Required to set incident Resolved"
+    }
+  }
+}

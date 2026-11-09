@@ -1,0 +1,14 @@
+agent:
+  id: risk_validation
+  parent: verification
+  display_name: "Risk Validation Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0
+  max_tokens: 1500
+runtime:
+  max_turns: 6
+tools: [scan_downstream_health, compare_pre_post_metrics]
+connectors: [dynatrace, azure_monitor, splunk]

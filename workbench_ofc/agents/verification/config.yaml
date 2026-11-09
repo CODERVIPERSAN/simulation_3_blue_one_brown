@@ -1,0 +1,29 @@
+agent:
+  id: verification
+  display_name: Verification Agent
+  version: "1.0.0"
+  kind: lifecycle
+  stage: verify
+model:
+  provider: azure_openai
+  name: gpt-4.1
+  temperature: 0.1
+  max_tokens: 2500
+runtime:
+  max_turns: 12
+  require_all_green_for_stable: true
+subagents:
+  - health_verification
+  - business_validation
+  - risk_validation
+connectors:
+  - dynatrace
+  - azure_monitor
+  - splunk
+  - cognitive_bridge
+tools:
+  - verify_health
+  - verify_business
+  - verify_risk
+  - declare_stable
+  - declare_unstable

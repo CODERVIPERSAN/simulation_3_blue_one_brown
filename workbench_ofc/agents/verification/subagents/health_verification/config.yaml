@@ -1,0 +1,14 @@
+agent:
+  id: health_verification
+  parent: verification
+  display_name: "Health Verification Agent"
+  version: "1.0.0"
+model:
+  provider: azure_openai
+  name: gpt-4.1-mini
+  temperature: 0
+  max_tokens: 1500
+runtime:
+  max_turns: 6
+tools: [check_service_health, check_slo_burn]
+connectors: [dynatrace, azure_monitor]

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/closure_learning/output.schema.json",
+  "title": "ClosureLearningOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "mode", "hitl_required"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "mode": {
+      "type": "string",
+      "enum": ["drafted", "awaiting_closure_approval", "closed", "blocked"]
+    },
+    "rca": {
+      "type": "object",
+      "properties": {
+        "draft": { "type": "string" },
+        "timeline_ref": { "type": ["string", "null"] }
+      }
+    },
+    "problem_id": { "type": ["string", "null"] },
+    "known_error_id": { "type": ["string", "null"] },
+    "knowledge_updates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": { "type": "string", "enum": ["kb", "runbook", "bridge"] },
+          "id": { "type": "string" }
+        }
+      }
+    },
+    "resolution_code": { "type": ["string", "null"] },
+    "incident_state": {
+      "type": ["string", "null"],
+      "enum": [null, "In Progress", "Resolved", "Closed"]
+    },
+    "hitl_required": { "type": "boolean" },
+    "hitl_gate": {
+      "type": ["string", "null"],
+      "enum": [null, "closure"]
+    }
+  }
+}

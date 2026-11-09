@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "apso://schemas/governance/output.schema.json",
+  "title": "GovernanceOutput",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["incident_id", "action", "allowed"],
+  "properties": {
+    "incident_id": { "type": "string" },
+    "action": { "type": "string" },
+    "allowed": { "type": "boolean" },
+    "confidence_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "risk_level": {
+      "type": ["string", "null"],
+      "enum": [null, "low", "medium", "high", "critical"]
+    },
+    "violations": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "audit_id": { "type": ["string", "null"] },
+    "kill_switch_active": { "type": "boolean", "default": false }
+  }
+}
